@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liying Zha | AI & Data Strategy</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400;1,400&family=Inter:wght@200;300;400;500&family=Caveat:wght@400;500&family=Fira+Code:wght@300&display=swap" rel="stylesheet">
+    <!-- 外部样式引用 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <a href="index.html" class="logo">liying zha.</a>
+        <div class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#skills">Skills & Experiences</a>
+            <a href="#offline">Life</a>
+            <a href="assets/resume.pdf" target="_blank">Resume</a>
+        </div>
+    </nav>
+
+    <header>
+        <span class="handwritten">Hello, I'm Liying —</span>
+        <h1>I engineer <span class="mark">intelligence</span> to bridge the gap <br>between data and <i>strategic narratives.</i></h1>
+        <p class="mission-text" style="font-size: 1.25rem; max-width: 750px; font-weight: 300;">
+            Former Data Consultant at <b>Weber Shandwick</b>. Currently designing AI systems that value nuance, context, and the logic of human communication.
+        </p>
+    </header>
+
+    <section id="work" style="border-top: none;">
+        <span class="section-label">Selected Projects</span>
+        <div class="stack-wrapper">
+            <!-- Card 1 -->
+            <div class="project-card card-ds">
+                <div class="card-left">
+                    <h2>Sentiment Neural Engine</h2>
+                    <p>Finetuning Transformer models to quantify the micro-nuances of consumer emotions in PR data.</p>
+                    <a href="projects/sentiment.html" class="btn-view">View Case Study</a>
+                </div>
+                <div class="card-right">
+                    <div class="img-mockup"></div>
+                    <div class="metric-group">
+                        <div class="metric"><label>Accuracy</label><span>94.2%</span></div>
+                        <div class="metric"><label>F1-Score</label><span>0.91</span></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="project-card card-ml">
+                <div class="card-left">
+                    <h2>Behavioral Forecasting</h2>
+                    <p>End-to-end ML pipeline designed to decode user churn patterns using XGBoost and SHAP explainability.</p>
+                    <a href="projects/churn.html" class="btn-view">View Case Study</a>
+                </div>
+                <div class="card-right">
+                    <div class="img-mockup"></div>
+                    <div class="metric-group">
+                        <div class="metric"><label>Retention Lift</label><span>15%</span></div>
+                        <div class="metric"><label>Recall</label><span>88.5%</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <span class="section-label">Skills & Experiences</span>
+        <div class="profile-grid">
+            <!-- Left: 40% -->
+            <div class="skills-col">
+                <h4 class="sub-heading">Technical Toolbox</h4>
+                <div class="tag-group">
+                    <span class="tag-tech">Python</span>
+                    <span class="tag-tech">PyTorch</span>
+                    <span class="tag-tech">Transformers</span>
+                    <span class="tag-tech">SQL Mastery</span>
+                    <span class="tag-tech">A/B Testing</span>
+                    <span class="tag-tech">Plotly</span>
+                </div>
+
+                <span class="bridge-text">Wait, there's more I brought from my media chapter...</span>
+
+                <div class="tag-group">
+                    <span class="tag-bonus">Stakeholder Storytelling</span>
+                    <span class="tag-bonus">Strategic Empathy</span>
+                    <span class="tag-bonus">Crisis Response Logic</span>
+                </div>
+            </div>
+
+            <!-- Right: 60% -->
+            <div class="journey-col">
+                <h4 class="sub-heading">The Path</h4>
+                <div class="timeline">
+                    <div class="timeline-item active">
+                        <span class="time-label">2024 — PRESENT</span>
+                        <h4 class="job-title">AI Research & ML Pivot</h4>
+                        <p class="job-desc">Focusing on technically robust models with human-centric logic. Engineering NLP solutions to solve real-world narrative challenges.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="time-label">2022 — 2023</span>
+                        <h4 class="job-title">Data Consultant at Weber Shandwick</h4>
+                        <p class="job-desc">Leveraging data intelligence for Fortune 500 tech clients. Bridging social signals and brand reputation through analytics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="offline">
+        <span class="handwritten" style="font-size: 1.6rem; color: var(--text-light);">When I am offline...</span>
+        <div class="hobby-grid">
+            <div class="hobby-item">
+                <div class="hobby-icon">🥖</div>
+                <p class="hobby-name">Baking</p>
+            </div>
+            <div class="hobby-item">
+                <div class="hobby-icon">📷</div>
+                <p class="hobby-name">Photography</p>
+            </div>
+            <div class="hobby-item">
+                <div class="hobby-icon">⛰️</div>
+                <p class="hobby-name">Hiking</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>LIYING ZHA • 2025 • BUILT WITH CODE & CARE</p>
+    </footer>
+</div>
+
+<script>
+    // Stacking Card Animation
+    window.addEventListener('scroll', () => {
+        const cards = document.querySelectorAll('.project-card');
+        const scrollPos = window.scrollY;
+        cards.forEach((card) => {
+            const cardTop = card.offsetTop;
+            if (scrollPos > cardTop - 100) {
+                const scale = 1 - (scrollPos - cardTop) * 0.00004;
+                card.style.transform = `scale(${Math.max(scale, 0.96)})`;
+            } else {
+                card.style.transform = `scale(1)`;
+            }
+        });
+    });
+</script>
+</body>
+</html>

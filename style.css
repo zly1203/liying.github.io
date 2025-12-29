@@ -1,0 +1,112 @@
+/* LIYING ZHA - MASTER STYLE SHEET */
+
+:root {
+    --bg: #ffffff;
+    --text-main: #2D2926; 
+    --text-light: #706F6C;
+    --border: #F0EDE9;
+    
+    /* IKEA-inspired Muted Bold Palette */
+    --ikea-red: #C88276;    
+    --ikea-blue: #5D7B93;   
+    --ikea-yellow: #E8B923; 
+    --ikea-green: #8A9A5B;  
+    --card-gray: #F7F6F2;
+}
+
+/* Base Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+body {
+    background-color: var(--bg);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+/* Navigation */
+nav { padding: 40px 0; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: 'Newsreader', serif; font-size: 1.5rem; font-style: italic; text-decoration: none; color: var(--text-main); font-weight: 500; }
+.nav-links a { text-decoration: none; color: var(--text-light); font-size: 0.85rem; margin-left: 40px; transition: 0.3s; font-weight: 400; }
+.nav-links a:hover { color: var(--ikea-red); }
+
+/* Typography Patterns */
+.handwritten { font-family: 'Caveat', cursive; color: var(--text-light); font-size: 1.6rem; display: block; margin-bottom: 10px; font-weight: 400; }
+
+h1 { font-family: 'Newsreader', serif; font-size: 3.5rem; line-height: 1.15; margin-bottom: 30px; font-weight: 300; letter-spacing: -0.02em; }
+
+.section-label { font-family: 'Fira Code', monospace; font-size: 0.7rem; color: #bbb; text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 60px; display: block; }
+
+.sub-heading { font-family: 'Newsreader', serif; font-size: 1.1rem; font-weight: 400; color: var(--text-main); margin-bottom: 25px; letter-spacing: 0.02em; }
+
+/* Mark/Highlight */
+.mark { background: linear-gradient(120deg, var(--ikea-yellow) 0%, var(--ikea-yellow) 100%); background-repeat: no-repeat; background-size: 100% 30%; background-position: 0 85%; opacity: 0.8; }
+
+/* Sections */
+section { padding: 100px 0; border-top: 1px solid var(--border); }
+
+/* Stacking Cards Component */
+.stack-wrapper { display: flex; flex-direction: column; gap: 15vh; padding-bottom: 100px; }
+
+.project-card { 
+    position: sticky; top: 100px; width: 100%; height: 580px; border-radius: 40px; 
+    padding: 60px; display: flex; justify-content: space-between; align-items: center; 
+    background-color: white; border: 1px solid var(--border); transform-origin: center top; 
+    transition: transform 0.4s ease; box-shadow: 0 10px 40px rgba(0,0,0,0.02); 
+}
+
+.card-ds { border-top: 6px solid var(--ikea-blue); }
+.card-ml { border-top: 6px solid var(--ikea-red); }
+
+.card-left { flex: 1; max-width: 440px; }
+.card-left h2 { font-family: 'Newsreader', serif; font-size: 2.6rem; font-weight: 400; margin-bottom: 25px; }
+.card-left p { color: var(--text-light); font-size: 1.05rem; margin-bottom: 50px; }
+
+.btn-view { display: inline-block; background: var(--text-main); color: white; padding: 14px 32px; border-radius: 50px; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.3s; text-align: center; }
+.btn-view:hover { background: var(--ikea-red); transform: translateY(-3px); }
+
+.card-right { flex: 1.1; padding-left: 50px; }
+.img-mockup { width: 100%; aspect-ratio: 16/10; background: var(--card-gray); border-radius: 20px; margin-bottom: 30px; border: 1px solid var(--border); }
+
+.metric-group { display: flex; gap: 50px; }
+.metric label { font-family: 'Fira Code', monospace; font-size: 0.7rem; color: #aaa; display: block; margin-bottom: 8px; text-transform: uppercase; }
+.metric span { font-family: 'Newsreader', serif; font-size: 2.4rem; color: var(--text-main); font-weight: 400; }
+
+/* Skills & Experience Split */
+.profile-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 80px; }
+
+.tag-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+.tag-tech { background: var(--ikea-blue); color: white; padding: 6px 14px; border-radius: 50px; font-size: 0.8rem; }
+.tag-bonus { border: 1px solid var(--ikea-red); color: var(--ikea-red); padding: 5px 12px; border-radius: 50px; font-size: 0.8rem; }
+
+.bridge-text { font-family: 'Caveat', cursive; color: var(--ikea-red); font-size: 1rem; letter-spacing: 0.08em; margin: 20px 0 15px 15px; display: block; border-left: 1px dashed var(--ikea-red); padding-left: 15px; }
+
+.timeline { border-left: 1px solid var(--border); padding-left: 30px; }
+.timeline-item { position: relative; margin-bottom: 50px; }
+.timeline-item::before { content: ""; position: absolute; left: -35.5px; top: 10px; width: 10px; height: 10px; background: white; border: 1.5px solid var(--border); border-radius: 50%; }
+.timeline-item.active::before { background: var(--ikea-red); border-color: var(--ikea-red); }
+.time-label { font-family: 'Fira Code', monospace; font-size: 0.75rem; color: #bbb; margin-bottom: 5px; display: block; }
+.job-title { font-family: 'Newsreader', serif; font-size: 1.5rem; font-weight: 400; margin-bottom: 5px; }
+.job-desc { color: var(--text-light); font-size: 0.95rem; line-height: 1.5; }
+
+/* Offline Section */
+.hobby-grid { display: flex; gap: 60px; }
+.hobby-item { text-align: center; }
+.hobby-icon { width: 50px; height: 50px; opacity: 0.5; margin-bottom: 10px; transition: 0.3s; filter: grayscale(1); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+.hobby-item:hover .hobby-icon { opacity: 1; filter: grayscale(0); }
+.hobby-name { font-size: 0.75rem; color: #aaa; font-family: 'Fira Code', monospace; text-transform: uppercase; }
+
+footer { text-align: center; padding: 80px 0; border-top: 1px solid var(--border); color: #ddd; font-size: 0.8rem; letter-spacing: 0.1em; }
+
+/* Responsive */
+@media (max-width: 950px) {
+    h1 { font-size: 2.8rem; }
+    .container { padding: 0 30px; }
+    .project-card { flex-direction: column; height: auto; padding: 40px; }
+    .card-right { padding-left: 0; margin-top: 40px; width: 100%; }
+    .profile-grid { grid-template-columns: 1fr; gap: 60px; }
+}

@@ -52,6 +52,15 @@ h1 { font-family: 'Newsreader', serif; font-size: 3.5rem; line-height: 1.15; mar
 /* Mark/Highlight */
 .mark { background: linear-gradient(120deg, var(--ikea-yellow) 0%, var(--ikea-yellow) 100%); background-repeat: no-repeat; background-size: 100% 30%; background-position: 0 85%; opacity: 0.8; }
 
+/* Highlighter for "data" */
+.mark-data { 
+    background: linear-gradient(120deg, var(--ikea-yellow) 0%, var(--ikea-yellow) 100%); 
+    background-repeat: no-repeat; 
+    background-size: 100% 35%; 
+    background-position: 0 85%; 
+    opacity: 0.85;
+}
+
 /* Sections */
 section { padding: 100px 0; border-top: 1px solid var(--border); }
 

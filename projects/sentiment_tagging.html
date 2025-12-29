@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentiFlow | Liying Zha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400;1,400&family=Inter:wght@200;300;400;500&family=Caveat:wght@400;500&family=Fira+Code:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .detail-header { padding: 60px 0 40px; }
+        .back-nav { margin-bottom: 40px; }
+        .back-nav a { font-family: 'Fira Code', monospace; font-size: 0.8rem; color: var(--ikea-red); text-decoration: none; letter-spacing: 0.1em; }
+        
+        h1.detail-title { font-family: 'Newsreader', serif; font-size: 3rem; line-height: 1.2; margin-bottom: 50px; font-weight: 300; }
+        
+        .meta-info { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 40px; 
+            padding: 30px 0; 
+            border-top: 1px solid var(--border); 
+            border-bottom: 1px solid var(--border); 
+            margin-bottom: 60px; 
+        }
+        .meta-item label { font-family: 'Fira Code', monospace; font-size: 0.7rem; color: #bbb; text-transform: uppercase; display: block; margin-bottom: 10px; }
+        .meta-item p { font-size: 0.95rem; font-weight: 400; color: var(--text-main); }
+
+        .article-body { max-width: 800px; margin: 0 auto; }
+        .article-body h2 { font-family: 'Newsreader', serif; font-size: 1.6rem; margin: 60px 0 20px; font-weight: 400; color: var(--ikea-blue); }
+        .article-body p { margin-bottom: 25px; font-size: 1.05rem; color: #444; }
+        
+        .visual-mockup {
+            width: 100%;
+            aspect-ratio: 16/10;
+            background: var(--card-gray);
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .code-snippet { 
+            background: #1E1E1E; 
+            color: #DCDCDC; 
+            padding: 25px; 
+            border-radius: 12px; 
+            font-family: 'Fira Code', monospace; 
+            font-size: 0.85rem; 
+            line-height: 1.6;
+            overflow-x: auto; 
+            margin: 30px 0;
+        }
+        
+        .narrative-insight { 
+            font-family: 'Caveat', cursive; 
+            font-size: 1.4rem; 
+            color: var(--ikea-red); 
+            background: #fdfaf7; 
+            padding: 25px; 
+            border-radius: 0 20px 20px 20px; 
+            margin: 40px 0; 
+            border-left: 3px solid var(--ikea-red); 
+        }
+
+        footer.detail-footer { margin-top: 100px; padding: 60px 0; border-top: 1px solid var(--border); text-align: center; color: #ccc; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <a href="../index.html" class="logo">liying zha.</a>
+        <div class="nav-links">
+            <a href="../index.html#work">Projects</a>
+            <a href="../index.html#playground">Playground</a>
+            <a href="../index.html#skills">About</a>
+            <a href="../assets/resume.pdf" target="_blank">Resume</a>
+        </div>
+    </nav>
+
+    <main class="detail-header">
+        <div class="back-nav">
+            <a href="../index.html#work">← BACK TO PROJECTS</a>
+        </div>
+
+        <h1 class="detail-title">SentiFlow: Reclaiming Efficiency in <br>Social Listening Workflows.</h1>
+
+        <div class="meta-info">
+            <div class="meta-item">
+                <label>Problem</label>
+                <p>Inaccurate auto-tagging in commercial tools (Talkwalker).</p>
+            </div>
+            <div class="meta-item">
+                <label>Solution</label>
+                <p>Custom AI Layer + Human-in-the-Loop Audit.</p>
+            </div>
+            <div class="meta-item">
+                <label>Impact</label>
+                <p>Reduced manual audit time & improved data quality.</p>
+            </div>
+        </div>
+
+        <article class="article-body">
+            <h2>The Context</h2>
+            <p>Commercial social listening tools like Talkwalker are great for data collection, but their out-of-the-box sentiment models often fail to grasp brand-specific nuances or sarcasm. In practice, this leads to hours of manual re-tagging by analysts to ensure report accuracy.</p>
+            
+            <p>SentiFlow was built as a bridge. It adds a customizable AI layer to pre-tag data and, more importantly, flags exactly which rows the machine is "unsure" about.</p>
+
+            <div class="visual-mockup">
+                <p style="color: #ccc; font-family: 'Fira Code'; font-size: 0.75rem;">[ STREAMLIT_INTERFACE_DASHBOARD ]</p>
+            </div>
+
+            <h2>How It Works</h2>
+            <p>Instead of blind automation, I implemented a "Confidence Gate." The workflow automatically accepts high-probability tags and isolates low-confidence ones for an analyst to review via a Streamlit interface. This ensures we aren't just faster, but also more reliable.</p>
+
+            <div class="code-snippet">
+<pre>
+# Filtering for human attention
+threshold = 0.85
+needs_review = df[df['confidence'] < threshold]
+auto_pass = df[df['confidence'] >= threshold]</pre>
+            </div>
+
+            <div class="narrative-insight">
+                "We don't need the AI to be perfect; we need it to know when it's confused. That's where the real efficiency gain happens."
+            </div>
+
+            <h2>Practical Outcomes</h2>
+            <p>The system moved the team away from "tagging everything" to "auditing the exceptions." This significantly reduced the time spent on data cleanup for monthly reports while building a cleaner, brand-specific dataset that can be used for future model fine-tuning.</p>
+        </article>
+    </main>
+
+    <footer class="detail-footer">
+        <p>LIYING ZHA • 2025</p>
+    </footer>
+</div>
+
+</body>
+</html>

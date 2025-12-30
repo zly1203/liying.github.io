@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Liying Zha</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400;1,400&family=Inter:wght@200;300;400;500&family=Caveat:wght@400;500&family=Fira+Code:wght@300;400&display=swap" rel="stylesheet">
+    <!-- Reference main stylesheet -->
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .projects-header {
+            padding: 120px 0 80px 0;
+            max-width: 900px;
+        }
+        .projects-header h1 {
+            font-family: 'Newsreader', serif;
+            font-size: 3.5rem;
+            line-height: 1.15;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+        .projects-header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            max-width: 700px;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 60px 0 100px 0;
+        }
+        
+        .project-card-index {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .project-card-index:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+        
+        .project-card-index h3 {
+            font-family: 'Newsreader', serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 400;
+            color: var(--text-main);
+        }
+        .project-card-index p {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .project-card-index .tag {
+            display: inline-block;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.7rem;
+            color: var(--ikea-blue);
+            background: rgba(93, 123, 147, 0.1);
+            padding: 4px 12px;
+            border-radius: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <a href="../index.html" class="logo">liying zha.</a>
+        <div class="nav-links">
+            <a href="index.html">Projects</a>
+            <a href="../playground/index.html">Playground</a>
+            <a href="../about.html">About</a>
+            <a href="../assets/resume.pdf" target="_blank">Resume</a>
+        </div>
+    </nav>
+
+    <header class="projects-header">
+        <h1>Projects</h1>
+        <p>Selected work showcasing data science, machine learning, and strategic analytics. Each project represents a unique challenge in translating data into actionable insights.</p>
+    </header>
+
+    <div class="projects-grid">
+        <a href="sentiment_tagging.html" class="project-card-index">
+            <h3>Sentiment Neural Engine</h3>
+            <p>Finetuning Transformer models to quantify the micro-nuances of consumer emotions in PR data.</p>
+            <span class="tag">NLP / ML</span>
+        </a>
+        
+        <a href="churn.html" class="project-card-index">
+            <h3>Behavioral Forecasting</h3>
+            <p>End-to-end ML pipeline designed to decode user churn patterns using XGBoost and SHAP explainability.</p>
+            <span class="tag">Machine Learning</span>
+        </a>
+        
+        <a href="visualization.html" class="project-card-index">
+            <h3>Data Visualization Platform</h3>
+            <p>Building interactive dashboards that transform complex datasets into actionable insights for strategic decision-making.</p>
+            <span class="tag">Data Viz</span>
+        </a>
+    </div>
+</div>
+
+<footer>
+    <p>LIYING ZHA • 2025 • BUILT WITH CODE & CARE</p>
+</footer>
+
+</body>
+</html>
+

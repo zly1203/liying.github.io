@@ -3,68 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SentiFlow | Liying Zha</title>
+    <title>Sentiment Audit Pipeline | Liying Zha</title>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400;1,400&family=Inter:wght@200;300;400;500&family=Caveat:wght@400;500&family=Fira+Code:wght@300;400&display=swap" rel="stylesheet">
+    <!-- Reference main stylesheet -->
     <link rel="stylesheet" href="../style.css">
     <style>
-        .detail-header { padding: 60px 0 40px; }
+        .detail-header { padding: 40px 0 30px; }
         .back-nav { margin-bottom: 40px; }
         .back-nav a { font-family: 'Fira Code', monospace; font-size: 0.8rem; color: var(--ikea-red); text-decoration: none; letter-spacing: 0.1em; }
         
         h1.detail-title { font-family: 'Newsreader', serif; font-size: 3rem; line-height: 1.2; margin-bottom: 50px; font-weight: 300; }
         
+        /* Updated Meta Info */
         .meta-info { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
-            gap: 40px; 
-            padding: 30px 0; 
+            gap: 30px; 
+            padding: 25px 0; 
             border-top: 1px solid var(--border); 
             border-bottom: 1px solid var(--border); 
-            margin-bottom: 60px; 
+            margin-bottom: 30px; 
         }
         .meta-item label { font-family: 'Fira Code', monospace; font-size: 0.7rem; color: #bbb; text-transform: uppercase; display: block; margin-bottom: 10px; }
-        .meta-item p { font-size: 0.95rem; font-weight: 400; color: var(--text-main); }
+        .meta-item p { font-size: 0.95rem; font-weight: 400; color: var(--text-main); line-height: 1.4; }
 
-        .article-body { max-width: 800px; margin: 0 auto; }
-        .article-body h2 { font-family: 'Newsreader', serif; font-size: 1.6rem; margin: 60px 0 20px; font-weight: 400; color: var(--ikea-blue); }
-        .article-body p { margin-bottom: 25px; font-size: 1.05rem; color: #444; }
+        .article-body { 
+            max-width: 850px; 
+            margin: 0 auto; 
+            padding-top: 30px;
+        }
+        /* Override global section styles - only affects sections inside .article-body */
+        .article-body section { 
+            padding: 0 !important; 
+            border-top: none !important; 
+            margin: 0;
+        }
+        .article-body section:first-child { 
+            margin-top: 0; 
+            padding-top: 0; 
+        }
+        .article-body h2 { 
+            font-family: 'Newsreader', serif; 
+            font-size: 1.8rem; 
+            margin: 45px 0 20px; 
+            font-weight: 400; 
+            color: var(--ikea-blue); 
+        }
+        .article-body section:first-child h2 { 
+            margin-top: 0; 
+        }
+        .article-body p { 
+            margin-bottom: 24px; 
+            font-size: 1.05rem; 
+            color: #333; 
+            line-height: 1.8; 
+        }
         
+        /* Visual Assets */
         .visual-mockup {
             width: 100%;
-            aspect-ratio: 16/10;
             background: var(--card-gray);
-            border-radius: 20px;
-            margin: 40px 0;
+            border-radius: 24px;
+            margin: 30px 0;
             border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 15px;
+            display: block;
         }
+        .visual-mockup img { width: 100%; border-radius: 12px; display: block; }
+        .caption { font-family: 'Fira Code', monospace; font-size: 0.7rem; color: #999; margin-top: 12px; display: block; text-align: center; }
 
         .code-snippet { 
-            background: #1E1E1E; 
-            color: #DCDCDC; 
-            padding: 25px; 
-            border-radius: 12px; 
+            background: #1e1e1e; 
+            color: #dcdcdc; 
+            padding: 20px; 
+            border-radius: 16px; 
             font-family: 'Fira Code', monospace; 
             font-size: 0.85rem; 
             line-height: 1.6;
             overflow-x: auto; 
-            margin: 30px 0;
+            margin: 25px 0;
         }
         
-        .narrative-insight { 
-            font-family: 'Caveat', cursive; 
-            font-size: 1.4rem; 
-            color: var(--ikea-red); 
-            background: #fdfaf7; 
-            padding: 25px; 
-            border-radius: 0 20px 20px 20px; 
-            margin: 40px 0; 
-            border-left: 3px solid var(--ikea-red); 
+        /* Reflection box - with background, no heading */
+        .reflection-box { 
+            background: #F7F6F2;
+            padding: 35px 40px; 
+            border-radius: 16px; 
+            margin: 50px 0; 
+            border: 1px solid var(--border);
+        }
+        .reflection-box p { 
+            margin-bottom: 18px; 
+            font-size: 1.05rem; 
+            color: #444; 
+            line-height: 1.75;
+        }
+        .reflection-box p:last-child { 
+            margin-bottom: 0; 
         }
 
-        footer.detail-footer { margin-top: 100px; padding: 60px 0; border-top: 1px solid var(--border); text-align: center; color: #ccc; font-size: 0.8rem; }
+        footer.detail-footer { margin-top: 150px; padding: 60px 0; border-top: 1px solid var(--border); text-align: center; color: #ccc; font-size: 0.8rem; }
+
+        @media (max-width: 768px) {
+            h1.detail-title { font-size: 2.5rem; }
+            .meta-info { grid-template-columns: 1fr; gap: 20px; }
+        }
     </style>
 </head>
 <body>
@@ -73,67 +117,106 @@
     <nav>
         <a href="../index.html" class="logo">liying zha.</a>
         <div class="nav-links">
-            <a href="../index.html#work">Projects</a>
-            <a href="../index.html#playground">Playground</a>
-            <a href="../index.html#skills">About</a>
+            <a href="index.html">Projects</a>
+            <a href="../playground/index.html">Playground</a>
+            <a href="../about.html">About</a>
             <a href="../assets/resume.pdf" target="_blank">Resume</a>
         </div>
     </nav>
 
     <main class="detail-header">
         <div class="back-nav">
-            <a href="../index.html#work">← BACK TO PROJECTS</a>
+            <a href="index.html">← BACK TO PROJECTS</a>
         </div>
 
-        <h1 class="detail-title">SentiFlow: Reclaiming Efficiency in <br>Social Listening Workflows.</h1>
+        <h1 class="detail-title">Optimizing Sentiment Audits: <br>A Confidence-Gated ML Pipeline.</h1>
 
         <div class="meta-info">
             <div class="meta-item">
-                <label>Problem</label>
-                <p>Inaccurate auto-tagging in commercial tools (Talkwalker).</p>
+                <label>Tools</label>
+                <p>Python, PyTorch, Streamlit, Gemini AI Studio, OpenAI API</p>
             </div>
             <div class="meta-item">
-                <label>Solution</label>
-                <p>Custom AI Layer + Human-in-the-Loop Audit.</p>
+                <label>Category</label>
+                <p>Sentiment Analysis / NLP</p>
             </div>
             <div class="meta-item">
-                <label>Impact</label>
-                <p>Reduced manual audit time & improved data quality.</p>
+                <label>Inspiration</label>
+                <p>Spotify Engineering Blog (Algorithmic Labeling)</p>
             </div>
         </div>
 
         <article class="article-body">
-            <h2>The Context</h2>
-            <p>Commercial social listening tools like Talkwalker are great for data collection, but their out-of-the-box sentiment models often fail to grasp brand-specific nuances or sarcasm. In practice, this leads to hours of manual re-tagging by analysts to ensure report accuracy.</p>
             
-            <p>SentiFlow was built as a bridge. It adds a customizable AI layer to pre-tag data and, more importantly, flags exactly which rows the machine is "unsure" about.</p>
+            <section id="pain-point">
+                <h2>The Pain Point</h2>
+                <p>In the media and agency world, sentiment analysis is a core metric, yet it is notoriously unreliable when handled by generic commercial platforms. During my career, I frequently managed data from social listening tools where sarcasm, irony, and brand-specific slang were consistently misclassified. This forced analysts into a difficult trade-off: either deliver reports with inaccurate data or spend days manually auditing and re-tagging thousands of mentions.</p>
+                
+                <p>While Large Language Models (LLMs) like GPT-4 or Gemini have the nuance to solve this, they present a cost problem. Running a high-level API on a monthly dataset of 20,000 social posts is not sustainable. I wanted to build a bridge—a way to use LLM intelligence to train a lightweight local model that could do the heavy lifting for free.</p>
+            </section>
 
-            <div class="visual-mockup">
-                <p style="color: #ccc; font-family: 'Fira Code'; font-size: 0.75rem;">[ STREAMLIT_INTERFACE_DASHBOARD ]</p>
-            </div>
+            <section id="inspiration">
+                <h2>Inspiration</h2>
+                <p>The concept for this project was sparked by a post on the <b>Spotify Engineering Blog</b> regarding algorithmic labeling. They described a workflow where they used high-capacity "Teacher" models to generate labels for a training set, which was then used to train a smaller "Student" model. This approach promised the best of both worlds: the accuracy of a massive model with the production speed and privacy of a local one. I set out to replicate this architecture for sentiment tagging.</p>
+            </section>
 
-            <h2>How It Works</h2>
-            <p>Instead of blind automation, I implemented a "Confidence Gate." The workflow automatically accepts high-probability tags and isolates low-confidence ones for an analyst to review via a Streamlit interface. This ensures we aren't just faster, but also more reliable.</p>
+            <section id="phase-1">
+                <h2>Phase 1: Notebook Prototyping</h2>
+                <p>I started by building the backbone in Jupyter Notebooks. The most immediate challenge was the "Cold Start"—starting with zero labeled data. I utilized <b>Gemini AI Studio</b> and OpenAI’s API to perform initial labeling on a raw dataset. By crafting prompts that accounted for specific ironies within consumer feedback, I was able to generate 1,000 high-quality pseudo-labels in minutes.</p>
 
-            <div class="code-snippet">
+                <p>Once I had this bootstrapped dataset, I moved into training. I chose <b>DistilBERT</b> as my "Student" model. This phase involved fine-tuning the model locally, focusing on transforming raw text into tensors and managing the training loop to achieve convergence without overfitting. This process effectively "distilled" the reasoning capability of the large models into a 250MB local file.</p>
+
+                <div class="visual-mockup">
+                    <!-- IMAGE_PLACEHOLDER: Insert screenshot of Notebook training curves -->
+                    <div style="padding: 60px; text-align: center; color: #bbb;">[ SCREENSHOT: JUPYTER_TRAINING_LOSS_PLOTS ]</div>
+                    <span class="caption">Fine-tuning results: Tracking loss and accuracy during student model distillation.</span>
+                </div>
+
+                <div class="code-snippet">
 <pre>
-# Filtering for human attention
-threshold = 0.85
-needs_review = df[df['confidence'] < threshold]
-auto_pass = df[df['confidence'] >= threshold]</pre>
-            </div>
+# Sample from Notebook 02: Initializing the Student Trainer
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=tokenized_train,
+    eval_dataset=tokenized_test,
+    compute_metrics=compute_metrics,
+)</pre>
+                </div>
+            </section>
 
-            <div class="narrative-insight">
-                "We don't need the AI to be perfect; we need it to know when it's confused. That's where the real efficiency gain happens."
-            </div>
+            <section id="phase-2">
+                <h2>Phase 2: Production & Streamlit</h2>
+                <p>After validating the model logic in the notebooks, the next goal was to make it usable in a real workflow. I built a <b>Streamlit</b> application to serve as the production interface. Throughout this stage, I utilized AI coding assistants to help translate my data-processing logic into an interactive UI, allowing me to iterate much faster on the frontend design.</p>
 
-            <h2>Practical Outcomes</h2>
-            <p>The system moved the team away from "tagging everything" to "auditing the exceptions." This significantly reduced the time spent on data cleanup for monthly reports while building a cleaner, brand-specific dataset that can be used for future model fine-tuning.</p>
+                <p>The core of the app is the <b>Confidence Gate</b>. In production, the local model predicts a sentiment and provides a probability score. If the model’s confidence is below 0.85, the data is automatically diverted into a "Manual Review" queue. This allows analysts to focus only on the ambiguous cases, while high-confidence data passes through automatically.</p>
+
+                <div class="visual-mockup">
+                    <img src="../assets/sentiment_a1.png" alt="Streamlit Audit Interface">
+                    <span class="caption">The live dashboard: Isolating low-confidence tags for human-in-the-loop review.</span>
+                </div>
+            </section>
+
+            <section id="key-results">
+                <h2>Key Results</h2>
+                <p>By implementing this pipeline, the time required for sentiment auditing was reduced significantly. Instead of tagging everything, the team could adopt an "exception-based" audit model. This resulted in an estimated 70% reduction in manual effort while maintaining a high standard of data reliability for strategy reports.</p>
+                
+                <p>Beyond immediate efficiency, the system creates a sustainable data flywheel. Every correction made by a human in the Streamlit app is recaptured and saved into the <b>Gold Standard</b> dataset. This means the model has a constant supply of high-quality training data for its next version, ensuring it becomes smarter and more brand-aware over time.</p>
+            </section>
+
+            <section id="reflections">
+                <h2>Reflection</h2>
+                <div class="reflection-box">
+                    <p>The biggest learning curve wasn't the machine learning code—it was the <b>orchestration of data flow</b>. I initially underestimated how difficult it would be to manage the lineage of data as it moved between different stages (Raw, Staging, Gold).</p>
+                    <p>Ensuring that every post maintained its <b>UUID (Unique Identifier)</b> throughout human corrections and model retraining was critical. I learned that in a production environment, data integrity is just as vital as model accuracy; without it, the feedback loop breaks down entirely.</p>
+                </div>
+            </section>
+
         </article>
     </main>
 
     <footer class="detail-footer">
-        <p>LIYING ZHA • 2025</p>
+        <p>LIYING ZHA • 2025 • BUILT WITH CODE & CARE</p>
     </footer>
 </div>
 

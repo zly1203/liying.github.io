@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina | Playground | Liying Zha</title>
+    <!-- 字体保持一致 -->
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@200;300;400;500&family=Caveat:wght@400;500&family=Fira+Code:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body { background-color: #ffffff; color: var(--text-main); }
+        .container { max-width: 1100px; }
+
+        .back-nav { padding: 60px 0 20px; }
+        .back-nav a { font-family: 'Fira Code', monospace; font-size: 0.75rem; color: var(--ikea-red); text-decoration: none; letter-spacing: 0.15em; }
+
+        /* Header Layout */
+        .lab-hero { 
+            padding-bottom: 80px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        .lab-title h1 { font-family: 'Newsreader', serif; font-size: 5rem; line-height: 0.95; margin: 0; font-weight: 300; }
+        .lab-title span { font-family: 'Inter'; font-size: 0.9rem; color: var(--text-light); display: block; margin-top: 10px; font-style: italic; }
+        
+        .header-intro-text { 
+            max-width: 420px; 
+            font-size: 1rem; 
+            line-height: 1.6; 
+            color: var(--text-light); 
+        }
+
+        /* Narrative Blocks */
+        .story-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 100px; padding: 100px 0; align-items: start; }
+        .text-block h2 { font-family: 'Newsreader', serif; font-size: 2rem; margin-bottom: 25px; font-weight: 400; color: var(--ikea-blue); }
+        .text-block p { font-size: 1.1rem; line-height: 1.8; color: #444; margin-bottom: 25px; }
+
+        /* Visual Containers */
+        .visual-frame { width: 100%; background: #fafafa; border-radius: 4px; overflow: hidden; border: 1px solid var(--border); }
+        .tilt-l { transform: rotate(-1deg); }
+        .tilt-r { transform: rotate(1deg); }
+        .placeholder { width: 100%; aspect-ratio: 4/5; display: flex; align-items: center; justify-content: center; color: #bbb; font-family: 'Fira Code'; font-size: 0.7rem; text-align: center; padding: 20px; }
+
+        /* Highlight Section: The Math */
+        .aesthetic-math { 
+            grid-column: 1 / -1; 
+            background: #f9fafb; 
+            padding: 80px; 
+            border-radius: 40px; 
+            display: grid; 
+            grid-template-columns: 1.2fr 1fr; 
+            gap: 80px; 
+            align-items: center; 
+            margin: 40px 0; 
+        }
+        .aesthetic-math h3 { font-family: 'Newsreader'; font-size: 2.4rem; margin-bottom: 20px; font-weight: 300; }
+        .code-minimalist { font-family: 'Fira Code'; font-size: 0.85rem; color: var(--ikea-blue); line-height: 1.7; background: white; padding: 40px; border-radius: 24px; border: 1px solid var(--border); }
+
+        /* Lab Notes List */
+        .lab-notes { list-style: none; padding-top: 20px; }
+        .lab-notes li { padding: 20px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 30px; }
+        .lab-notes b { font-family: 'Fira Code'; font-size: 0.75rem; color: var(--ikea-red); text-transform: uppercase; min-width: 110px; padding-top: 5px; letter-spacing: 0.1em; }
+        .lab-notes span { font-size: 1rem; color: #555; line-height: 1.6; }
+
+        /* Footer Reflection */
+        .reflection { 
+            padding: 120px 0; 
+            text-align: center; 
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+        .reflection p { font-family: 'Caveat', cursive; font-size: 1.8rem; color: var(--ikea-red); line-height: 1.4; }
+
+        @media (max-width: 850px) {
+            .header-top, .story-grid, .aesthetic-math { grid-template-columns: 1fr; gap: 40px; }
+            .lab-title h1 { font-size: 4rem; }
+            .aesthetic-math { padding: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <a href="../index.html" class="logo">liying zha.</a>
+        <div class="nav-links">
+            <a href="../projects/index.html">Projects</a>
+            <a href="index.html">Playground</a>
+            <a href="../about.html">About</a>
+            <a href="../assets/resume.pdf" target="_blank">Resume</a>
+        </div>
+    </nav>
+    
+    <div class="back-nav">
+        <a href="index.html">← BACK TO PLAYGROUND</a>
+    </div>
+
+    <header class="lab-hero">
+        <div class="header-top">
+            <div class="lab-title">
+                <h1>Lumina</h1>
+                <span>A gesture-controlled interactive experiment</span>
+            </div>
+            <div class="header-intro-text">
+                This project is a small dive into "vibe coding"—an attempt to translate the abstract images in my head into a physical, digital experience using only gestures and light.
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Section: The Spark -->
+        <section class="story-grid" style="border-top: none; padding-top: 0;">
+            <div class="visual-frame tilt-l">
+                <div class="placeholder">[ Photo: A book on ancient murals or a sketch ]</div>
+            </div>
+            <div class="text-block" style="padding-top: 40px;">
+                <h2>The Spark</h2>
+                <p>My mind is often filled with stray images—a blend of books I’ve read or things I’ve imagined while lost in a story. For a long time, these thoughts felt too abstract to ever be real; I simply didn't know how to give them a shape. </p>
+                <p>But AI has become a tool that lets me outline these ideas in a simple way, allowing me to test new ways to interact. When I came across a project using remote hand-tracking, it clicked. I could combine my interest in <b>ancient murals</b> with the simple fun of those "first three words you see" fortune games. I imagined a user in a silent, dark chamber, using their finger as a flickering candle to uncover "destiny" hidden on a weathered wall.</p>
+            </div>
+        </section>
+
+        <!-- Section: The Process -->
+        <section class="story-grid">
+            <div class="text-block">
+                <h2>The Process</h2>
+                <p>I started with no background in frontend development. I used <b>Gemini AI Studio</b> to architect the core logic and <b>Cursor</b> to refine the details. It was a fascinating exercise in communication: the hardest part wasn't the logic itself, but finding the right words to describe a sensation.</p>
+                <p>Trying to explain the "warmth" of a flicker or the "friction" of a hand movement taught me a lot about how we translate human feelings into technical parameters. Every adjustment to the code was really an adjustment to the <i>vibe</i>.</p>
+            </div>
+            <div class="visual-frame tilt-r">
+                <div class="placeholder">[ GIF: A recording of a Cursor refinement session ]</div>
+            </div>
+        </section>
+
+        <!-- Section: Logic of Light -->
+        <section class="aesthetic-math">
+            <div class="code-minimalist">
+                <pre>
+// Manifesting light through logic
+const flicker = Math.sin(time * 8) * 0.15 
+              + Math.random() * 0.1;
+
+pointLight.intensity = 18 + flicker * 4;
+spotLight.intensity = 50 + flicker * 15;</pre>
+            </div>
+            <div class="text-block">
+                <h3>The Logic of Light</h3>
+                <p>One of the most surprising moments was realizing that the flickering candlelight effect was actually just a mathematical function. I didn't expect that something so natural and poetic could be governed by a <b>Sine wave</b> mixed with a bit of randomness.</p>
+                <p>Seeing a dry equation manifest as warm, sensory feedback changed my perspective. It made me realize how much of the natural world can be expressed through the elegance of logic, and how much territory is still left to explore at the intersection of math and atmosphere.</p>
+            </div>
+        </section>
+
+        <!-- Section: Lab Notes -->
+        <section class="story-grid">
+            <div class="text-block" style="grid-column: 1 / -1;">
+                <h2>Lab Notes</h2>
+                <p>Lumina is a small experiment I continue to tinker with. Here are a few areas I'm still refining:</p>
+                
+                <ul class="lab-notes">
+                    <li><b>Smoothing</b> <span>Adjusting the hand-tracking data to ensure the light feels responsive without being jittery.</span></li>
+                    <li><b>Atmosphere</b> <span>Calibrating the light falloff to keep the keywords mysterious.</span></li>
+                    <li><b>Randomness</b> <span>Ensuring the algorithmic word-selection feels organic and never repetitive.</span></li>
+                    <li><b>Detection</b> <span>Improving the camera's edge-sensing for different lighting environments.</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Final Thought -->
+        <footer class="reflection">
+            <p>I see AI as a paintbrush for the imagination. It helps us construct small, meaningful corners of a digital world that used to only exist in our heads.</p>
+        </footer>
+    </main>
+
+    <footer style="padding: 80px 0; color: #ccc; font-size: 0.7rem; text-align: center; font-family: 'Fira Code'; letter-spacing: 0.1em;">
+        LIYING ZHA / PLAYGROUND 2025
+    </footer>
+</div>
+
+</body>
+</html>

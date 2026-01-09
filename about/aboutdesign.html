@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Liying Zha</title>
+    <!-- 引入字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@200;300;400;500&family=Caveat:wght@400;500&family=Fira+Code:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text-main: #2D2926; 
+            --text-light: #706F6C;
+            --border: #F0EDE9;
+            --ikea-red: #C88276;    
+            --ikea-blue: #5D7B93;   
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background-color: var(--bg); 
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; 
+        }
+
+        .about-header {
+            padding: 120px 0 80px 0;
+            max-width: 900px;
+        }
+        .about-header h1 {
+            font-family: 'Newsreader', serif;
+            font-size: 3.5rem;
+            line-height: 1.15;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+        .about-header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            max-width: 700px;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+        /* 导航栏 */
+        nav { padding: 40px 0; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Newsreader', serif; font-size: 1.4rem; font-style: italic; text-decoration: none; color: var(--text-main); font-weight: 500; }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { text-decoration: none; color: var(--text-light); font-size: 0.85rem; }
+
+        /* 交互主区域 */
+        .atelier-area {
+            width: 100%;
+            height: 70vh;
+            min-height: 500px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 10px;
+            margin-top: 20px;
+            overflow: visible; /* 确保照片不会被裁剪 */
+        }
+
+        /* --- 手绘风相机 --- */
+        .camera {
+            width: 180px;
+            height: 140px;
+            background: #fff;
+            border: 2.5px solid var(--text-main);
+            border-radius: 20px 15px 25px 18px; 
+            position: relative;
+            z-index: 500; /* 确保相机在最上层 */
+            box-shadow: 8px 8px 0px var(--border);
+        }
+
+        .shutter-btn {
+            position: absolute;
+            top: -12px; right: 25px;
+            width: 40px; height: 12px;
+            background: var(--ikea-red);
+            border: 2.5px solid var(--text-main);
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+            z-index: 510;
+            transition: transform 0.1s ease;
+        }
+        .shutter-btn:active { transform: translateY(4px); }
+
+        .lens {
+            width: 70px; height: 70px;
+            border: 2px solid var(--text-main);
+            border-radius: 50% 48% 52% 45%;
+            margin: 20px auto 0;
+            background: #fff;
+            position: relative;
+        }
+        .lens::after {
+            content: "";
+            position: absolute; top: 12px; left: 12px;
+            width: 40px; height: 40px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+        }
+
+        .camera-slot {
+            width: 130px; height: 4px;
+            background: var(--text-main);
+            margin: 12px auto 0;
+            border-radius: 10px;
+        }
+
+        .hint-text {
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            color: var(--ikea-red);
+            margin-top: 20px;
+            z-index: 400;
+        }
+
+        /* --- 拍立得照片 --- */
+        .polaroid {
+            width: 180px;
+            background: white;
+            padding: 10px 10px 30px 10px;
+            border: 1px solid var(--border);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: absolute;
+            top: 60px; 
+            left: calc(50% - 90px);
+            opacity: 0;
+            z-index: 10;
+            pointer-events: none;
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            transform-origin: center top;
+            will-change: transform, opacity;
+        }
+
+        .polaroid .img-area {
+            width: 100%; aspect-ratio: 1;
+            background: #fcfcfc;
+            margin-bottom: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem;
+            border: 0.5px solid #eee;
+        }
+
+        .polaroid .caption {
+            font-family: 'Newsreader', serif;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        /* 状态 1: 弹出预览 (在相机下方一点) */
+        .is-popping {
+            opacity: 1;
+            transform: translateY(120px) scale(1.3);
+            z-index: 450;
+        }
+
+        /* 状态 2: 挂载到相机下方 */
+        .is-hanging {
+            opacity: 1 !important;
+            top: 180px !important; /* 相机下方，相机高度140px + padding 10px + 间距30px */
+            bottom: auto;
+            left: var(--pos-x) !important;
+            transform: rotate(var(--rot)) scale(0.85);
+            z-index: 50;
+            pointer-events: auto; /* 挂载后允许鼠标经过 */
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+        }
+
+        /* 绳子上的小夹子 */
+        .is-hanging::before {
+            content: "";
+            position: absolute; top: -8px; left: calc(50% - 3px);
+            width: 6px; height: 12px;
+            background: #dcb; border: 1px solid #ba9;
+        }
+
+        /* 晃动动画 - 使用 JavaScript 动态创建以确保兼容性 */
+        .is-hanging:hover {
+            animation: swing 1.5s ease-in-out infinite;
+            cursor: pointer;
+            z-index: 600; /* 悬停时置于最前 */
+            opacity: 1 !important;
+            transition: none; /* 禁用transition以允许动画 */
+        }
+        
+        /* 为每个照片动态创建动画 */
+        @keyframes swing {
+            0%, 100% { 
+                transform: scale(0.85);
+            }
+            50% { 
+                transform: scale(0.87);
+            }
+        }
+
+        /* --- 绳索 --- */
+        .rope {
+            position: absolute;
+            top: 200px; /* 相机下方一点，相机高度140px + padding 10px + 间距50px */
+            width: 100%;
+            height: 1.5px;
+            background: #eee;
+            z-index: 5;
+        }
+        .rope::before, .rope::after {
+            content: ""; position: absolute; top: -3px; width: 8px; height: 8px; background: #ddd; border-radius: 50%;
+        }
+        .rope::before { left: 20px; }
+        .rope::after { right: 20px; }
+
+        footer { 
+            position: absolute; bottom: 30px; width: 100%; text-align: center; 
+            color: #ddd; font-size: 0.75rem; font-family: 'Fira Code'; letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <a href="../index.html" class="logo">liying zha.</a>
+        <div class="nav-links">
+            <a href="../projects/index.html">Projects</a>
+            <a href="../playground/index.html">Playground</a>
+            <a href="../about.html">About</a>
+            <a href="../assets/resume.pdf" target="_blank">Resume</a>
+        </div>
+    </nav>
+
+    <header class="about-header">
+        <h1>About</h1>
+        <p>Data Scientist with a marketer's instinct. Grounded in 4+ years of decoding consumer behavior for global brands, I leverage AI-augmented workflows to uncover the "human why" behind the metrics.</p>
+    </header>
+
+    <div class="atelier-area">
+        <div class="camera">
+            <div class="shutter-btn" id="shutter"></div>
+            <div class="lens"></div>
+            <div class="camera-slot"></div>
+        </div>
+
+        <div class="hint-text" id="hint">Take a photo of my journey...</div>
+    </div>
+
+    <footer>
+        LIYING ZHA • 2025 • BUILT WITH CODE & CARE
+    </footer>
+</div>
+
+<script>
+    const data = [
+        { icon: "🎨", text: "Rooted in Media. Decoded brand stories at Weber Shandwick for 4 years before code." },
+        { icon: "🔍", text: "Data with Context. I believe analytics is most powerful when it respects the human 'why'." },
+        { icon: "🎓", text: "M.S. in Data Science. Pursuing a technical depth to build smarter, ethical AI systems." },
+        { icon: "🐍", text: "Technical Toolkit. Python, PyTorch, and SQL are my new mediums for storytelling." },
+        { icon: "🥖", text: "Offline Life. When the screen is dark, I'm usually baking, hiking, or exploring art." }
+    ];
+
+    let current = 0;
+    const shutter = document.getElementById('shutter');
+    const area = document.querySelector('.atelier-area');
+    const hint = document.getElementById('hint');
+
+    shutter.addEventListener('click', () => {
+        if (current >= data.length) {
+            hint.style.opacity = 1;
+            hint.innerText = "All memories captured! ✨";
+            return;
+        }
+
+        hint.style.opacity = 0;
+
+        // 1. 创建卡片
+        const item = data[current];
+        const card = document.createElement('div');
+        card.className = 'polaroid';
+        card.innerHTML = `
+            <div class="img-area">${item.icon}</div>
+            <div class="caption">${item.text}</div>
+        `;
+        
+        // 挂载位置：从左开始排布
+        // posX 从 5% 开始，每个间隔 18%
+        const posX = 5 + (current * 18); 
+        // 随机倾斜度，范围从 -8deg 到 +8deg，既随机又不会太大
+        const rot = (Math.random() - 0.5) * 16; // 随机倾斜度 (-8deg to +8deg)
+        
+        card.style.setProperty('--pos-x', `${posX}%`);
+        card.style.setProperty('--rot', `${rot}deg`);
+        
+        // 为每个照片创建自定义的晃动动画，确保兼容性
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes swing-${current} {
+                0%, 100% { 
+                    transform: rotate(${rot}deg) scale(0.85);
+                }
+                50% { 
+                    transform: rotate(${rot + 4}deg) scale(0.87);
+                }
+            }
+            .polaroid-${current}:hover {
+                animation: swing-${current} 1.5s ease-in-out infinite !important;
+            }
+        `;
+        document.head.appendChild(style);
+        card.classList.add(`polaroid-${current}`);
+
+        area.appendChild(card);
+
+        // 2. 动画：弹出并停留在相机下方供阅读
+        setTimeout(() => {
+            card.classList.add('is-popping');
+        }, 50);
+
+        // 3. 动画：3秒后滑到最下方的绳子上
+        setTimeout(() => {
+            card.classList.remove('is-popping');
+            card.classList.add('is-hanging');
+        }, 3200);
+
+        current++;
+    });
+</script>
+
+</body>
+</html>

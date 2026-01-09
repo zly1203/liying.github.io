@@ -1,0 +1,23 @@
+# Large image files (over 2MB)
+# Add specific large files here to avoid pushing them
+assets/burak-emre-cira-uQi1yvv1Dy4-unsplash.jpg
+
+# Or ignore all unsplash images
+# assets/*unsplash*.jpg
+
+# Common large file patterns
+*.psd
+*.ai
+*.sketch
+*.fig
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
